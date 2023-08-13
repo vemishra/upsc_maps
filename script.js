@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
   const currentDateSpan = document.getElementById("currentDate");
-  const datePickerButton = document.getElementById("datePickerButton");
+  const datePicker = document.getElementById("datePicker");
   const mapFrame = document.getElementById("mapFrame");
 
   // Sample available dates and corresponding map URLs
@@ -13,6 +13,10 @@ document.addEventListener("DOMContentLoaded", function () {
   // Get today's date in YYYY-MM-DD format
   const todayDate = new Date().toISOString().split("T")[0];
 
+  // Set the minimum and maximum selectable dates
+  datePicker.min = availableDates[0].date;
+  datePicker.max = availableDates[availableDates.length - 1].date;
+
   // Update the map and date display
   function updateMapAndDate(date) {
     const mapUrl = availableDates.find((entry) => entry.date === date)?.mapUrl || "";
@@ -20,20 +24,10 @@ document.addEventListener("DOMContentLoaded", function () {
     currentDateSpan.textContent = date;
   }
 
-  // Open the date picker on button click
-  datePickerButton.addEventListener("click", function () {
-    const dateInput = document.createElement("input");
-    dateInput.type = "date";
-    dateInput.value = currentDate;
-    dateInput.min = availableDates[0].date;
-    dateInput.max = todayDate;
-
-    dateInput.addEventListener("input", function () {
-      currentDate = dateInput.value;
-      updateMapAndDate(currentDate);
-    });
-
-    dateInput.click();
+  // Listen for changes in the date picker
+  datePicker.addEventListener("change", function () {
+    const selectedDate = datePicker.value;
+    updateMapAndDate(selectedDate);
   });
 
   // Initialize with the most recent available date
