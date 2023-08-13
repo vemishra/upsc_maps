@@ -13,9 +13,6 @@ document.addEventListener("DOMContentLoaded", function () {
   // Get today's date in YYYY-MM-DD format
   const todayDate = new Date().toISOString().split("T")[0];
 
-  // Set the current date to today's date initially
-  let currentDate = todayDate;
-
   // Update the map and date display
   function updateMapAndDate(date) {
     const mapUrl = availableDates.find((entry) => entry.date === date)?.mapUrl || "";
@@ -39,6 +36,7 @@ document.addEventListener("DOMContentLoaded", function () {
     dateInput.click();
   });
 
-  // Load the map for the initial date
-  updateMapAndDate(currentDate);
+  // Initialize with the most recent available date
+  const mostRecentDate = availableDates[availableDates.length - 1].date;
+  updateMapAndDate(mostRecentDate);
 });
