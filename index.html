@@ -8,24 +8,20 @@
 </head>
 <body>
   <header>
-    <h1>Welcome to Teaching Maps Project</h1>
+    <div class="topbar">
+      <div class="date">
+        <span id="currentDate">Loading...</span>
+        <button id="datePickerButton">Select Date</button>
+      </div>
+    </div>
   </header>
 
-  <nav>
-    <ul>
-      <li><a href="day1.html">Day 1 Teaching</a></li>
-      <li><a href="quiz-day1.html">Day 1 Quiz</a></li>
-      <!-- Add similar links for other days -->
-    </ul>
-  </nav>
-
   <main>
-    <!-- Embed Google My Maps here -->
-    <iframe src="https://www.google.com/maps/d/u/0/embed?mid=1tkMwfnKgjAeIrvZmz6w3fRSHUZxnR5I&ehbc=2E312F" width="640" height="480"></iframe>
+    <div id="mapContainer">
+      <iframe id="mapFrame" width="100%" height="500"></iframe>
+    </div>
   </main>
 
-  <footer>
-    <p>&copy; 2023 Teaching Maps Project</p>
-  </footer>
+  <script src="script.js"></script>
 </body>
 </html>
